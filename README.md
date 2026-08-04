@@ -1,6 +1,6 @@
 # Exp 02 Word Count using MapReduce
 
-**Date:**
+**Date:04/08/2026** 
 
 ## AIM:
 To implement the Word Count program using the MapReduce programming model and determine the frequency of each word in the given input text.
@@ -32,12 +32,37 @@ Compile and execute the program.
 Verify and display the word frequencies.
 
 ## PROGRAM:
+```
+from collections import defaultdict
+text = input("Enter the text: ")
+def mapper(text):
+    mapped = []
+    words = text.lower().split()
 
-*(Paste the Java code for the Word Count MapReduce program here.)*
+    for word in words:
+        mapped.append((word, 1))
 
+    return mapped
+def reducer(mapped_data):
+    result = defaultdict(int)
+
+    for key, value in mapped_data:
+        result[key] += value
+
+    return result
+mapped = mapper(text)
+reduced = reducer(mapped)
+print("\nMapped Output:")
+for item in mapped:
+    print(item)
+print("\nWord Frequencies:")
+for word in sorted(reduced):
+    print(f"{word}: {reduced[word]}")
+```
 ## OUTPUT:
 
-*(Paste the execution output showing the frequency of each word here.)*
+<img width="195" height="150" alt="image" src="https://github.com/user-attachments/assets/2d147199-aa37-486a-80ab-29f48411ed21" />
+
 
 ## RESULT:
 
